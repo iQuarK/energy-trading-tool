@@ -9,7 +9,11 @@ import HydroIcon from "../icons/hydro";
 import { EnergyOfferings } from "../../lib/definitions";
 import EnergyOfferingOption from "./energy-offering-icon";
 
-export default function FormEnergyOffering(): ReactElement<any, any> {
+type Props = {
+  
+};
+
+export default function FormEnergyOffering({}:Props): ReactElement<any, any> {
   const action = (data: any) => console.log("pelila", data.values().next());
   const [energyOffering, setEnergyOffering] = useState<EnergyOfferings>(
     EnergyOfferings.SOLAR

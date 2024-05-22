@@ -37,3 +37,16 @@ body {
     text-wrap: balance;
   }
 }
+
+input, textarea {
+  border: solid thin black;
+  max-width: 100px;
+}
+input {
+  max-width: 100px;
+}
+label {
+  min-width: 100px;
+  text-align: right;
+  margin-right: 5px;
+}

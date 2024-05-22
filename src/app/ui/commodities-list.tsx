@@ -1,16 +1,23 @@
 import React, { ReactElement, useState } from "react";
-import { IEnergyOffering } from "../lib/definitions";
+import {
+  EnergyOfferingFields,
+  labelsByEnergyOffering,
+} from "../lib/definitions";
 import classNames from "classnames";
 
-type Props = { commodities: IEnergyOffering[] };
+type Props = {
+  commodities: EnergyOfferingFields[];
+  onEdit: (item: EnergyOfferingFields) => void;
+};
 
 export default function CommoditiesList({
   commodities,
+  onEdit,
 }: Props): ReactElement<any, any> {
   const [openDetails, setOpenDetails] = useState<string | null>(null);
 
   if (commodities.length === 0) {
-    return <div>Oooops! You still have no commodities.</div>
+    return <div>Oooops! You still have no commodities.</div>;
   }
 
   return (
@@ -23,7 +30,7 @@ export default function CommoditiesList({
         <div className="font-bold">Payment Terms</div>
         <div className="font-bold text-right">Actions</div>
       </>
-      {commodities.map((c) => (
+      {commodities.map((c: { [key: string]: any }) => (
         <React.Fragment key={c.type}>
           <div>{c.type}</div>
           <div>{c.price}</div>
@@ -31,23 +38,40 @@ export default function CommoditiesList({
           <div>{c.contractTerms}</div>
           <div>{c.paymentTerms}</div>
           <div className="text-right">
-            Edit | Delete |{" "}
-            <a className="cursor-pointer" onClick={() => setOpenDetails(openDetails === c.type ? null : c.type)}>Details</a>
+            <a
+              className="cursor-pointer"
+              onClick={() => onEdit(c as EnergyOfferingFields)}
+            >
+              Edit
+            </a>
+            |
+            <a
+              className="cursor-pointer"
+              onClick={() =>
+                setOpenDetails(openDetails === c.type ? null : c.type)
+              }
+            >
+              Details
+            </a>
           </div>
           <div
             className={classNames(
               "col-span-6 bg-amber-200 rounded-b-md transition-all overflow-hidden",
-              { "max-h-0": openDetails !== c.type,
-              "max-h-300 p-4 mb-4": openDetails === c.type
-               }
+              {
+                "max-h-0": openDetails !== c.type,
+                "max-h-300 p-4 mb-4": openDetails === c.type,
+              }
             )}
           >
-            <div className="grid grid-cols-5 gap-2">
-              <div>Capacity: 45MW</div>
-              <div>Location: here</div>
-              <div>Energy Output Predictions: more or less a lot</div>
-              <div>Time of Availability: 8am to 7pm (11 hours)</div>
-              <div>Certifications: CERT1 CERT2</div>
+            <div className="flex flex-col gap-2">
+              {Object.keys(labelsByEnergyOffering[c.type] ?? {}).map(
+                (key: string) => (
+                  <div key={key}>
+                    <b>{labelsByEnergyOffering[c.type][key]}:</b>{" "}
+                    {JSON.stringify(c[key])}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </React.Fragment>

@@ -1,41 +1,57 @@
 "use client";
-import { useState } from "react";
-import { EnergyOfferings, IEnergyOffering } from "../lib/definitions";
+import { useState, useEffect } from "react";
+import {
+  EnergyOfferingFields,
+  EnergyOfferings,
+} from "../lib/definitions";
 import Button from "../ui/button";
 import CommoditiesList from "../ui/commodities-list";
 import Modal from "../ui/modal";
-import FormEnergyOffering from "../ui/form/form-energy-offering";
+import { store } from "../data/store";
+import EnergyOfferingForm from "../ui/form/energy-offering-form";
 
-const commodities: IEnergyOffering[] = [
-  {
-    type: EnergyOfferings.SOLAR,
-    price: 34.0,
-    minimumPurchaseQuantity: 10,
-    contractTerms: "contract terms blah blah blah",
-    paymentTerms: "payment terms blahblah",
-  }
-];
+type ModalStatus = {
+  opened: boolean;
+  data?: EnergyOfferingFields;
+};
 
 export default function Seller() {
-  const [openedModal, setOpenedModal] = useState(false);
+  const [modalStatus, setModalStatus] = useState<ModalStatus>({
+    opened: false,
+  });
+  const [commodities, setCommodities] = useState<EnergyOfferingFields[]>([]);
+
+  useEffect(() => {
+    store.subscribe(setCommodities);
+  }, []);
 
   return (
-    <main
-      id="seller-page"
-      className="min-h-screen p-4"
-    >
-      <Modal title="Create a new Energy Offering" opened={openedModal} onClose={() => setOpenedModal(false)}>
-        <FormEnergyOffering />
-      </Modal>
-      <h1 className="font-bold text-lg mb-4">My Energy Offerings</h1>
-      <CommoditiesList commodities={commodities} />
-      <Button
-        disabled={commodities.length === Object.keys(EnergyOfferings).length || openedModal}
-        onClick={() => setOpenedModal(true)}
+    <>
+      <Modal
+        title="Create/Edit a new Energy Offering"
+        opened={modalStatus.opened}
+        onClose={() => setModalStatus({ opened: false })}
       >
-        + Add a new Energy Offering
-      </Button>
-
-    </main>
+        <EnergyOfferingForm fields={modalStatus.data} />
+      </Modal>
+      <main id="seller-page" className="min-h-screen p-4">
+        <h1 className="font-bold text-lg mb-4">My Energy Offerings</h1>
+        <CommoditiesList
+          commodities={commodities}
+          onEdit={(item: EnergyOfferingFields) => {
+            setModalStatus({ opened: true, data: item });
+          }}
+        />
+        <Button
+          disabled={
+            commodities.length === Object.keys(EnergyOfferings).length ||
+            modalStatus.opened
+          }
+          onClick={() => setModalStatus({ opened: true })}
+        >
+          + Add a new Energy Offering
+        </Button>
+      </main>
+    </>
   );
 }

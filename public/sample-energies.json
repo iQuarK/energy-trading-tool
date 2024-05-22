@@ -1,0 +1,42 @@
+[
+  {
+    "type": "solar",
+    "price": 34.0,
+    "minimumPurchaseQuantity": 10,
+    "contractTerms": "contract terms blah blah blah",
+    "paymentTerms": "payment terms blahblah",
+    "capacity": 22,
+    "location": "London, UK",
+    "energyOutputPredictions": "It is going to rain",
+    "timeOfAvailability": {
+      "sunset": "8am",
+      "sunshine": "7pm"
+    },
+    "certifications": "AENOR, UNE..."
+  },
+  {
+    "type": "gas",
+    "price": 33.0,
+    "minimumPurchaseQuantity": 30,
+    "contractTerms": "contract terms GAS blah blah blah",
+    "paymentTerms": "payment terms GAS blahblah",
+    "capacity": 200,
+    "deliveryMethod": "Delivery Method",
+    "flexibilityOfSupply": 30,
+    "emissionCreditsOrPenalties": "Emission Credit of Penalties",
+    "contractLength": "Contract Length"
+  },
+  {
+    "type": "wind",
+    "price": 12.0,
+    "minimumPurchaseQuantity": 5,
+    "contractTerms": "contract terms WIND blah blah blah",
+    "paymentTerms": "payment terms WIND blahblah",
+    "capacity": 50,
+    "location": "Bristol, UK",
+    "windSpeedPredictions": "Wind Speed Predictions",
+    "turbineEfficiency": 3,
+    "timeOfAvailability": {"sunset": "11 am", "sunshine": "9pm"},
+    "certifications": "Some certifications"
+  }
+]

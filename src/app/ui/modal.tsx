@@ -37,7 +37,7 @@ export default function Modal({
   }, [opened]);
 
   return (
-    <dialog ref={dialogRef} className="min-w-96 p-4">
+    <dialog ref={dialogRef} className="min-w-96 p-6 w-2/6">
       <div className="flex justify-between mb-4 font-bold items-center">
         <h2>{title}</h2>
         <button className="border-2 rounded px-2" onClick={closeModal}>X</button>

@@ -4,12 +4,11 @@ import { Dispatch, SetStateAction } from "react";
 
 export const subject$ = new BehaviorSubject<EnergyOfferingFields[]>([]);
 const initialState: EnergyOfferingFields[] = [];
-let state: EnergyOfferingFields[] = [];
+let state: EnergyOfferingFields[] = initialState;
 
-export const store = {
-  init: (data: EnergyOfferingFields[]) => {
-    state = data ?? initialState;
-    subject$.next(state);
+export const trade = {
+  init: () => {
+    subject$.next(initialState);
   },
   subscribe: (setState: Dispatch<SetStateAction<EnergyOfferingFields[]>>) =>
     subject$.subscribe(setState),
@@ -31,7 +30,3 @@ export const store = {
     subject$.next(state);
   },
 };
-
-fetch("/sample-energies.json")
-  .then((res) => res.json())
-  .then((data) => store.init(data));

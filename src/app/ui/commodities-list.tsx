@@ -4,6 +4,7 @@ import {
   labelsByEnergyOffering,
 } from "../lib/definitions";
 import classNames from "classnames";
+import Button from "./button";
 
 type Props = {
   commodities: EnergyOfferingFields[];
@@ -38,21 +39,17 @@ export default function CommoditiesList({
           <div>{c.contractTerms}</div>
           <div>{c.paymentTerms}</div>
           <div className="text-right">
-            <a
-              className="cursor-pointer"
-              onClick={() => onEdit(c as EnergyOfferingFields)}
-            >
+            <Button onClick={() => onEdit(c as EnergyOfferingFields)}>
               Edit
-            </a>
-            |
-            <a
-              className="cursor-pointer"
+            </Button>
+            {" "}
+            <Button
               onClick={() =>
                 setOpenDetails(openDetails === c.type ? null : c.type)
               }
             >
               Details
-            </a>
+            </Button>
           </div>
           <div
             className={classNames(

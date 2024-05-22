@@ -2,35 +2,33 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies
+
+```bash
+npm i
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Some notes about the project
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+There are three pages, Seller, Buyer, and Both.
 
-## Learn More
+The last one shows both screens to check that the changes in values will be updated automatically in the Buyer screen.
 
-To learn more about Next.js, take a look at the following resources:
+the Sample file has three cases, I added a functionality to add more energy types. As I use the energy producer as the ID (that means that sellers would be able to create just one of each kind of energy producer), being, one solar, one gas, etc. So if you try to create another solar from the form, it will update (the operation is *upsert*) the existing one (this was to just not adding more complexity).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Currently, the flashing feature, which is crucial for indicating new value changes, is not implemented. I propose to keep the last state, and then, if anything is different for each row, use a CSS class that animates once this flashing is performed in the background. This feature, once implemented, will significantly enhance the user experience.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Things to improve (IHMO)
+The modal does not close automatically when the user Submits the form.
+The naming convention, mainly *EnergyOffering*, is a bit ugly and makes long variable names.
+I suggest refactoring the form fields, as my initial intention was to create domain-based ones instead of value-type ones, so they are a lot :-S.
+I still need a few fields to find what units are used for the value.
+The form should look more aligned.

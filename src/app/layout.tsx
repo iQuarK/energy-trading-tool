@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
+import React from "react";
 import classNames from "classnames";
 import SideNav from "@/app/ui/sidenav";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Energy Trading Tool",
@@ -20,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={classNames(inter.className, "p-10")}>
+      <body className={classNames("p-10")}>
         <Header />
         <div className="flex flex-row">
           <div className="h-screen w-full flex-none md:w-64">

@@ -1,6 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
 import { BehaviorSubject } from "rxjs";
 import { EnergyOfferingFields } from "../lib/definitions";
-import { Dispatch, SetStateAction } from "react";
 
 export const subject$ = new BehaviorSubject<EnergyOfferingFields[]>([]);
 const initialState: EnergyOfferingFields[] = [];
@@ -34,6 +34,6 @@ export const store = {
   },
 };
 
-fetch("/sample-energies.json")
+fetch(`${process.env.BASE_URL ?? ""}/sample-energies.json`)
   .then((res) => res.json())
   .then((data) => store.init(data));

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommoditiesTrade from "../ui/commodities-trade";
 import { store } from "../data/store";
 import { EnergyOfferingFields } from "../lib/definitions";

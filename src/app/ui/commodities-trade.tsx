@@ -5,7 +5,6 @@ import {
 } from "../lib/definitions";
 import classNames from "classnames";
 import Button from "./button";
-import EnergyOfferingForm from "./form/energy-offering-form";
 
 type Props = {
   commodities: EnergyOfferingFields[];

@@ -1,5 +1,5 @@
+import React, { ReactElement } from "react";
 import classNames from "classnames";
-import React, { ButtonHTMLAttributes, ReactElement } from "react";
 
 type Props = {
   children: string;

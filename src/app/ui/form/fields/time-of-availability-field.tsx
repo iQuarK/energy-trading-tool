@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import SunshineIcon from "../../icons/sunshine-icon";
 import SunsetIcon from "../../icons/sunset-icon";
 import { TimeOfAvailability } from "@/app/lib/definitions";

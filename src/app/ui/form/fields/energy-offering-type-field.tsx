@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import EnergyOfferingOption from "./energy-offering-icon";
 import { EnergyOfferings } from "@/app/lib/definitions";
 import KineticIcon from "../../icons/kinetic-icon";

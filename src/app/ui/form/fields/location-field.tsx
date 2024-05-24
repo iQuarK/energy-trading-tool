@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import Image from "next/image";
 
 type Props = {

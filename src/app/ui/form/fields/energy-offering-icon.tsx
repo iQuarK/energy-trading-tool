@@ -1,6 +1,6 @@
+import React, { useContext } from "react";
 import { EnergyOfferings } from "@/app/lib/definitions";
 import classNames from "classnames";
-import { useContext } from "react";
 import { EnergyOfferingFormContext } from "../energy-offering-form";
 
 type Props = {

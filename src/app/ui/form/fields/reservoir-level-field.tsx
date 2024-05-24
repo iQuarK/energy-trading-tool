@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import { RulerIcon, ChartIcon } from "../../icons/";
 import { ReservoirLevel } from "@/app/lib/definitions";
 
